@@ -9,21 +9,23 @@
         <div class="grid lg:grid-cols-[1.02fr_0.98fr] gap-10 lg:gap-14 items-center">
             <div class="space-y-8">
                 <div class="space-y-5">
-                    <p class="eyebrow">Technology Professional</p>
-                    <h1 class="text-5xl md:text-7xl font-black leading-[0.98] text-balance">
-                        NeuralDev builds practical apps and keeps the hardware behind them running.
+                    <p class="eyebrow reveal-up">Technology Professional</p>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black leading-[0.98] text-balance reveal-up anim-delay-1">
+                        <span class="typewriter-word typewriter-neural">neuraldev</span>
+                        <span class="typewriter-word typewriter-build">build</span>
+                        <span class="hero-headline-rest">practical apps and keep hardware running.</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
+                    <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed reveal-up anim-delay-2">
                         I help clients move from tech problems to working solutions: mobile apps, modern websites, AI-assisted workflows, and dependable computer or laptop repair handled with clear communication.
                     </p>
                 </div>
 
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-wrap gap-3 reveal-up anim-delay-3">
                     <a href="{% url 'portfolio:contact' %}" class="btn btn-primary shadow-lg shadow-primary/20">Discuss a Project</a>
                     <a href="#services" class="btn btn-outline border-primary/40 text-base-content hover:border-primary">View Services</a>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl stagger-children">
                     <div class="data-chip rounded-lg p-4">
                         <p class="text-sm font-black text-primary uppercase">Mobile</p>
                         <p class="text-xs uppercase tracking-wider text-base-content/55">Apps</p>
@@ -43,22 +45,35 @@
                 </div>
             </div>
 
-            <div class="glass-panel rounded-lg p-5 md:p-7 lift-card">
-                <div class="relative">
-                    <figure class="mx-auto max-w-md overflow-hidden rounded-full border border-base-content/10 bg-base-200/30">
-                        <img src="{% static 'portfolio/img/profile.jpg' %}" alt="NeuralDev professional profile photo" class="aspect-square w-full rounded-full object-cover object-center">
-                    </figure>
-                    <p class="text-center font-bold text-2xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mt-4 tracking-wide">Gerlan B. Dorona</p>
-                    <div class="grid sm:grid-cols-3 gap-3 mt-5">
-                        <div class="data-chip rounded-lg p-4">
+            <div class="profile-card glass-panel rounded-lg p-5 md:p-7 lift-card reveal-right anim-delay-2">
+                <div class="relative z-[1]">
+                    <div class="profile-visual mx-auto">
+                        <span class="profile-orbit profile-orbit-a" aria-hidden="true"></span>
+                        <span class="profile-orbit profile-orbit-b" aria-hidden="true"></span>
+                        <span class="profile-grid" aria-hidden="true"></span>
+                        <figure class="profile-frame">
+                            <img src="{% static 'portfolio/img/profile.jpg' %}" alt="NeuralDev professional profile photo" class="profile-photo">
+                        </figure>
+                        <span class="profile-status">
+                            <span class="profile-status-dot"></span>
+                            Available
+                        </span>
+                    </div>
+                    <div class="identity-lockup">
+                        <p class="identity-kicker">NeuralDev Portfolio</p>
+                        <p class="identity-name">Gerlan B. Dorona</p>
+                        <span class="identity-line" aria-hidden="true"></span>
+                    </div>
+                    <div class="grid sm:grid-cols-3 gap-3 mt-6">
+                        <div class="data-chip identity-chip rounded-lg p-4">
                             <p class="text-xs text-base-content/45">Role</p>
                             <p class="font-bold text-primary">Developer</p>
                         </div>
-                        <div class="data-chip rounded-lg p-4">
+                        <div class="data-chip identity-chip rounded-lg p-4">
                             <p class="text-xs text-base-content/45">Support</p>
                             <p class="font-bold text-secondary">Technician</p>
                         </div>
-                        <div class="data-chip rounded-lg p-4">
+                        <div class="data-chip identity-chip rounded-lg p-4">
                             <p class="text-xs text-base-content/45">Approach</p>
                             <p class="font-bold text-accent">Practical</p>
                         </div>
@@ -71,12 +86,12 @@
 
 <section id="about" class="section-wrap">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="glass-panel rounded-lg p-6 md:p-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center">
+        <div class="glass-panel rounded-lg p-6 md:p-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center reveal-up">
             <div>
-                <p class="eyebrow mb-4">About</p>
-                <h2 class="text-3xl md:text-5xl font-black leading-tight text-balance">A versatile builder for clients who need technology that simply works.</h2>
+                <p class="eyebrow mb-4 reveal-left">About</p>
+                <h2 class="text-3xl md:text-5xl font-black leading-tight text-balance reveal-left anim-delay-1">A versatile builder for clients who need technology that simply works.</h2>
             </div>
-            <div class="space-y-5 text-base-content/70 text-lg leading-relaxed">
+            <div class="space-y-5 text-base-content/70 text-lg leading-relaxed reveal-right anim-delay-2">
                 <p>
                     I work across the full technology layer: planning and building mobile or web applications, using AI-assisted development to move faster, and diagnosing the computers and laptops people rely on every day.
                 </p>
@@ -91,12 +106,12 @@
 <section id="skills" class="section-wrap">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-10">
-            <p class="eyebrow mb-3">Skills</p>
-            <h2 class="text-3xl md:text-5xl font-black">Core Capabilities</h2>
+            <p class="eyebrow mb-3 reveal-up">Skills</p>
+            <h2 class="text-3xl md:text-5xl font-black reveal-up anim-delay-1">Core Capabilities</h2>
         </div>
 
         {% if skills %}
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 stagger-children">
             {% for skill in skills %}
             <span class="data-chip rounded-lg px-4 py-3 text-sm font-semibold">
                 {{ skill.name }}
@@ -105,7 +120,7 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
             <div class="data-chip rounded-lg p-5">
                 <h3 class="font-bold text-primary">Mobile Development</h3>
                 <p class="mt-2 text-sm text-base-content/60 leading-relaxed">App screens, client workflows, responsive interfaces, and practical build planning for phone-first experiences.</p>
@@ -131,14 +146,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-                <p class="eyebrow mb-3">Projects</p>
-                <h2 class="text-3xl md:text-5xl font-black">Selected Build Work</h2>
+                <p class="eyebrow mb-3 reveal-up">Projects</p>
+                <h2 class="text-3xl md:text-5xl font-black reveal-up anim-delay-1">Selected Build Work</h2>
             </div>
-            <a href="{% url 'portfolio:projects' %}" class="btn btn-outline border-primary/40">All Projects</a>
+            <a href="{% url 'portfolio:projects' %}" class="btn btn-outline border-primary/40 reveal-right anim-delay-2">All Projects</a>
         </div>
 
         {% if projects %}
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
             {% for project in projects %}
             <article class="glass-panel lift-card rounded-lg overflow-hidden">
                 {% if project.image %}
@@ -179,12 +194,12 @@
 <section id="experience" class="section-wrap">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-10">
-            <p class="eyebrow mb-3">Experience</p>
-            <h2 class="text-3xl md:text-5xl font-black">Professional Focus</h2>
+            <p class="eyebrow mb-3 reveal-up">Experience</p>
+            <h2 class="text-3xl md:text-5xl font-black reveal-up anim-delay-1">Professional Focus</h2>
         </div>
 
         {% if timeline_events %}
-        <div class="space-y-6 max-w-3xl">
+        <div class="space-y-6 max-w-3xl stagger-children">
             {% for event in timeline_events %}
             <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-primary/60">
                 <div class="flex flex-wrap items-center gap-3">
@@ -198,7 +213,7 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="grid md:grid-cols-3 gap-5">
+        <div class="grid md:grid-cols-3 gap-5 stagger-children">
             <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-primary/60">
                 <h3 class="font-semibold text-lg">Software that serves the business</h3>
                 <p class="text-base-content/60 mt-2">I focus on clear user flows, maintainable code, and practical features that reduce manual work.</p>
@@ -219,12 +234,12 @@
 <section id="services" class="section-wrap">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-10">
-            <p class="eyebrow mb-3">Services</p>
-            <h2 class="text-3xl md:text-5xl font-black">Ways I Can Help</h2>
+            <p class="eyebrow mb-3 reveal-up">Services</p>
+            <h2 class="text-3xl md:text-5xl font-black reveal-up anim-delay-1">Ways I Can Help</h2>
         </div>
 
         {% if services %}
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
             {% for service in services %}
             <article class="glass-panel lift-card rounded-lg p-6">
                 <div class="card-body">
@@ -235,7 +250,7 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
             <article class="glass-panel lift-card rounded-lg p-6">
                 <h3 class="card-title">Mobile App Development</h3>
                 <p class="text-base-content/60 mt-3">Plan, design, and build mobile-first experiences for service businesses, internal teams, and customer workflows.</p>

@@ -7,13 +7,13 @@
 <section class="section-wrap">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12 max-w-3xl">
-            <p class="eyebrow mb-3">Projects</p>
-            <h1 class="text-5xl md:text-7xl font-black leading-none text-balance">Selected technology work.</h1>
-            <p class="mt-5 text-lg text-base-content/65 leading-relaxed">A focused set of software builds, web systems, AI-assisted workflows, and technical support examples.</p>
+            <p class="eyebrow mb-3 reveal-up">Projects</p>
+            <h1 class="text-5xl md:text-7xl font-black leading-none text-balance reveal-up anim-delay-1">Selected technology work.</h1>
+            <p class="mt-5 text-lg text-base-content/65 leading-relaxed reveal-up anim-delay-2">A focused set of software builds, web systems, AI-assisted workflows, and technical support examples.</p>
         </div>
 
         {% if projects %}
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
             {% for project in projects %}
             <article class="glass-panel lift-card rounded-lg overflow-hidden">
                 {% if project.image %}

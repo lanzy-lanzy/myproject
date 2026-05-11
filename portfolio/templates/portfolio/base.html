@@ -22,12 +22,21 @@
 </head>
 <body class="page-shell min-h-screen bg-base-100 antialiased">
     {% csrf_token %}
+
+    <div class="ambient-field" aria-hidden="true">
+        <span class="ambient-orbit ambient-orbit-a"></span>
+        <span class="ambient-orbit ambient-orbit-b"></span>
+        <span class="ambient-orbit ambient-orbit-c"></span>
+        <span class="ambient-shard ambient-shard-a"></span>
+        <span class="ambient-shard ambient-shard-b"></span>
+        <span class="ambient-shard ambient-shard-c"></span>
+    </div>
     
     <!-- Navigation -->
     {% include "portfolio/includes/navbar.html" %}
     
     <!-- Main Content -->
-    <main class="relative">
+    <main class="relative z-[1]">
         {% block content %}{% endblock %}
     </main>
     
