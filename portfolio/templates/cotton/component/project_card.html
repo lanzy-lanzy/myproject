@@ -1,0 +1,71 @@
+{% load lb_tags %}
+
+<!-- Project Card Component -->
+<c-lb.card class="group overflow-hidden hover:shadow-lg transition-shadow duration-300" padding="p-0">
+    <c-lb.card.body class="p-0">
+        <!-- Image Area (if exists) -->
+        {% if project.image %}
+        <figure class="relative overflow-hidden aspect-video">
+            <img 
+                src="{{ project.image.url }}" 
+                alt="{{ project.title }}"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+        </figure>
+        {% else %}
+        <div class="h-32 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+            <c-lbi.rmx.folder-open w="3rem" h="3rem" class="text-primary/40" />
+        </div>
+        {% endif %}
+        
+        <div class="p-5 space-y-4">
+            <!-- Status Badge -->
+            <div class="flex items-center justify-between">
+                <span class="badge {{ project.get_status_display_class }} badge-sm">
+                    {{ project.get_status_display }}
+                </span>
+                {% if project.is_featured %}
+                <span class="badge badge-primary badge-sm">
+                    <c-lbi.rmx.star fill w="0.875rem" h="0.875rem" />
+                </span>
+                {% endif %}
+            </div>
+            
+            <!-- Title & Description -->
+            <div class="space-y-2">
+                <h3 class="font-semibold text-lg group-hover:text-primary transition-colors">{{ project.title }}</h3>
+                <p class="text-base-content/60 text-sm leading-relaxed line-clamp-2">
+                    {{ project.short_description }}
+                </p>
+            </div>
+            
+            <!-- Tech Stack Badges -->
+            {% if project.tech_stack %}
+            <div class="flex flex-wrap gap-1.5">
+                {% for tech in project.tech_stack|slice:":4" %}
+                <span class="badge badge-ghost badge-sm">{{ tech }}</span>
+                {% endfor %}
+                {% if project.tech_stack|length > 4 %}
+                <span class="badge badge-ghost badge-sm">+{{ project.tech_stack|length|add:"-4" }}</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- Actions -->
+            <div class="flex gap-2 pt-2">
+                {% if project.live_url %}
+                <c-lb.button variant="primary" size="sm" as="a" href="{{ project.live_url }}" target="_blank" class="btn-sm">
+                    <c-lbi.rmx.external-link w="0.875rem" h="0.875rem" />
+                    View
+                </c-lb.button>
+                {% endif %}
+                {% if project.repo_url %}
+                <c-lb.button variant="ghost" size="sm" as="a" href="{{ project.repo_url }}" target="_blank" class="btn-sm">
+                    <c-lbi.rmx.brands.github w="0.875rem" h="0.875rem" />
+                    Code
+                </c-lb.button>
+                {% endif %}
+            </div>
+        </div>
+    </c-lb.card.body>
+</c-lb.card>

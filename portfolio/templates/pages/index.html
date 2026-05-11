@@ -1,0 +1,118 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Gerlan B. Dorona | Technology Professional{% endblock %}
+
+{% block content %}
+<section id="home" class="section-wrap min-h-[calc(100vh-5rem)] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center">
+            <div class="space-y-8">
+                <div class="space-y-5">
+                    <p class="eyebrow">Mobile, Web, AI & Repair</p>
+                    <h1 class="text-5xl md:text-7xl font-black leading-[0.98] text-balance">
+                        Gerlan B. Dorona solves practical technology problems with code, AI, and hands-on repair.
+                    </h1>
+                    <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
+                        I help clients create useful mobile and web experiences, apply AI-assisted development where it saves time, and keep computers or laptops stable, secure, and ready for work.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-primary shadow-lg shadow-primary/20">Start a Conversation</a>
+                    <a href="#about" class="btn btn-outline border-primary/40 text-base-content hover:border-primary">Learn More</a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl">
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="font-bold text-primary">Mobile</p>
+                        <p class="text-sm text-base-content/55">App workflows</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="font-bold text-secondary">Web</p>
+                        <p class="text-sm text-base-content/55">Django systems</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="font-bold text-accent">AI</p>
+                        <p class="text-sm text-base-content/55">Assisted delivery</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="font-bold text-info">Repair</p>
+                        <p class="text-sm text-base-content/55">PC & laptop care</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-lg p-5 md:p-7 lift-card">
+                <figure class="mx-auto max-w-md overflow-hidden rounded-full border border-base-content/10 bg-base-200/30">
+                    <img src="{% static 'portfolio/img/profile.jpg' %}" alt="Gerlan B. Dorona professional profile photo" class="aspect-square w-full rounded-full object-cover object-center">
+                </figure>
+                <div class="grid grid-cols-3 gap-3 mt-5">
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs text-base-content/45">Build</p>
+                        <p class="font-bold text-primary">Apps</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs text-base-content/45">Improve</p>
+                        <p class="font-bold text-secondary">Systems</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs text-base-content/45">Fix</p>
+                        <p class="font-bold text-accent">Devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-lg p-6 md:p-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-start">
+            <div>
+                <p class="eyebrow mb-4">About Me</p>
+                <h2 class="text-3xl md:text-5xl font-black leading-tight text-balance">Practical technical range with a client-first mindset.</h2>
+            </div>
+            <div class="space-y-5 text-base-content/70 text-lg leading-relaxed">
+                <p>
+                    I work on the problems clients actually feel: a business needs a better website, a mobile workflow needs to become simpler, an internal process needs automation, or a laptop needs to stop slowing down the day.
+                </p>
+                <p>
+                    My core skills cover mobile development, web development, AI-assisted development, troubleshooting, software setup, laptop diagnostics, upgrades, and performance cleanup. That combination lets me think beyond one screen or one device and recommend the most useful path forward.
+                </p>
+                <p>
+                    Clients come to me for clear explanations, steady execution, and solutions that are built to be used. Whether the work is code, configuration, repair, or a mix of all three, the goal is the same: make technology easier to trust.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <p class="eyebrow mb-3">Services</p>
+            <h2 class="text-3xl md:text-5xl font-black">What I Can Help You Build, Improve, or Fix</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Mobile Development</h3>
+                <p class="text-base-content/60 mt-3">Mobile-first interfaces, client workflows, service apps, and practical app planning for teams that need work to happen faster.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Web Development</h3>
+                <p class="text-base-content/60 mt-3">Professional websites, Django applications, admin tools, dashboards, and web systems that are clean, responsive, and maintainable.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">AI-Assisted Development</h3>
+                <p class="text-base-content/60 mt-3">AI-supported prototyping, content workflows, automation ideas, code acceleration, and smarter ways to reduce repetitive work.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Computer & Laptop Repair</h3>
+                <p class="text-base-content/60 mt-3">Diagnostics, tune-ups, software installation, upgrades, cleanup, setup, maintenance, and straightforward repair advice.</p>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

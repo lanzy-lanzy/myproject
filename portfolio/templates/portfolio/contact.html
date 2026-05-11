@@ -1,0 +1,50 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Contact | Gerlan B. Dorona{% endblock %}
+
+{% block content %}
+<section class="section-wrap min-h-[calc(100vh-5rem)] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-center">
+            <div class="space-y-7">
+                <div class="space-y-4">
+                    <p class="eyebrow">Contact</p>
+                    <h1 class="text-5xl md:text-7xl font-black leading-none text-balance">
+                        Let's solve your next technology problem.
+                    </h1>
+                    <p class="text-lg text-base-content/68 leading-relaxed max-w-xl">
+                        Bring the app idea, website need, AI workflow, or computer issue. I will help you choose the right path and turn it into a working result.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-lg p-5 grid sm:grid-cols-3 gap-3">
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs uppercase tracking-wider text-base-content/45">Response</p>
+                        <p class="font-bold text-primary">Fast</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs uppercase tracking-wider text-base-content/45">Mode</p>
+                        <p class="font-bold text-secondary">Async</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-xs uppercase tracking-wider text-base-content/45">Scope</p>
+                        <p class="font-bold text-accent">Useful</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                {% if messages %}
+                <div class="space-y-3 mb-6">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags|default:'info' }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% include "portfolio/partials/contact_form.html" %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

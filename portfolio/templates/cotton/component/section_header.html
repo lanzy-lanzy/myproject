@@ -1,0 +1,12 @@
+{% load lb_tags %}
+
+<!-- Section Header Component -->
+<div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+    {% if eyebrow %}
+    <p class="text-primary font-medium text-sm uppercase tracking-wider mb-3">{{ eyebrow }}</p>
+    {% endif %}
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">{{ title }}</h2>
+    {% if subtitle %}
+    <p class="text-base-content/60 text-lg">{{ subtitle }}</p>
+    {% endif %}
+</div>

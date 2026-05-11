@@ -1,0 +1,67 @@
+{% load static %}
+{% load lb_tags %}
+{% labb_theme as labb_theme_attr %}
+<!DOCTYPE html>
+<html lang="en" {{ labb_theme_attr|safe }}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description|default:'Gerlan B. Dorona provides mobile development, web development, AI-assisted development, and computer or laptop repair services.' }}">
+    <title>{{ title|default:'Gerlan B. Dorona' }} | Technology Professional</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'portfolio/img/favicon/favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'portfolio/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'portfolio/img/favicon/favicon-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'portfolio/img/favicon/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'portfolio/img/favicon/site.webmanifest' %}">
+    
+    <!-- HTMX for AJAX -->
+    <script src="https://unpkg.com/htmx.org@2.0.0" defer></script>
+    
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <c-lb.m.dependencies noGlobalCSS setThemeEndpoint="{% url 'portfolio:set_theme' %}" alpine />
+</head>
+<body class="min-h-screen bg-base-100 text-base-content grainy-bg antialiased">
+    {% csrf_token %}
+    
+    <!-- Navigation -->
+    <c-navbar />
+    
+    <!-- Main Content -->
+    <main>
+        {{ slot }}
+    </main>
+    
+    <!-- Footer -->
+    <c-footer />
+    
+    <!-- Theme Switcher Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeInputs = document.querySelectorAll('input[name="theme-dropdown"].theme-controller');
+        
+        function updateActiveState() {
+            themeInputs.forEach(function(input) {
+                if (input.checked) {
+                    input.classList.add('btn-active');
+                } else {
+                    input.classList.remove('btn-active');
+                }
+            });
+        }
+        
+        updateActiveState();
+        
+        themeInputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                themeInputs.forEach(function(btn) {
+                    btn.classList.remove('btn-active');
+                });
+                this.classList.add('btn-active');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

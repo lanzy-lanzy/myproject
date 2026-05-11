@@ -1,0 +1,46 @@
+<form
+    method="post"
+    action="{% url 'portfolio:contact_submit' %}"
+    hx-post="{% url 'portfolio:contact_submit' %}"
+    hx-target="this"
+    hx-swap="outerHTML"
+    class="glass-panel lift-card field-shell rounded-lg p-6 md:p-8"
+>
+    {% csrf_token %}
+    <div class="relative space-y-5">
+        <div class="flex items-center justify-between gap-4 pb-2">
+            <div>
+                <p class="text-sm text-primary font-semibold">Transmission channel</p>
+                <p class="text-xs text-base-content/45">Secure project signal</p>
+            </div>
+            <span class="badge badge-primary badge-outline">Open</span>
+        </div>
+
+        <label class="block space-y-2">
+            <span class="label-text">Name</span>
+            <input type="text" name="name" value="{{ name|default:'' }}" class="input input-bordered {% if errors.name %}input-error{% endif %}" required>
+            {% if errors.name %}<span class="label-text-alt text-error mt-1">{{ errors.name }}</span>{% endif %}
+        </label>
+
+        <label class="block space-y-2">
+            <span class="label-text">Email</span>
+            <input type="email" name="email" value="{{ email|default:'' }}" class="input input-bordered {% if errors.email %}input-error{% endif %}" required>
+            {% if errors.email %}<span class="label-text-alt text-error mt-1">{{ errors.email }}</span>{% endif %}
+        </label>
+
+        <label class="block space-y-2">
+            <span class="label-text">Subject</span>
+            <input type="text" name="subject" value="{{ subject|default:'' }}" class="input input-bordered">
+        </label>
+
+        <label class="block space-y-2">
+            <span class="label-text">Message</span>
+            <textarea name="message" class="textarea textarea-bordered min-h-36 {% if errors.message %}textarea-error{% endif %}" required>{{ message|default:'' }}</textarea>
+            {% if errors.message %}<span class="label-text-alt text-error mt-1">{{ errors.message }}</span>{% endif %}
+        </label>
+
+        <div class="flex justify-end pt-2">
+            <button type="submit" class="btn btn-primary shadow-lg shadow-primary/20">Send Message</button>
+        </div>
+    </div>
+</form>

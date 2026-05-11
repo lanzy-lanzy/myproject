@@ -1,0 +1,13 @@
+{% load lb_tags %}
+
+<!-- Skill Badge Component -->
+<span 
+    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-base-200/80 text-sm font-medium text-base-content/80 hover:bg-base-200 hover:text-base-content transition-all duration-200 border border-base-content/5"
+>
+    {% if skill.icon %}
+    <c-lbi.{{ skill.icon }} w="1rem" h="1rem" class="text-primary/70" />
+    {% else %}
+    <c-lbi.rmx.check w="1rem" h="1rem" class="text-primary/70" />
+    {% endif %}
+    <span>{{ skill.name }}</span>
+</span>

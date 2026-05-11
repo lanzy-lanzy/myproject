@@ -1,0 +1,46 @@
+{% load lb_tags %}
+
+<!-- Timeline Item Component -->
+<div class="relative pl-8 sm:pl-10 group">
+    <!-- Timeline Line -->
+    {% if not forloop.last %}
+    <div class="absolute left-[11px] sm:left-[13px] top-8 bottom-0 w-px bg-base-content/10"></div>
+    {% endif %}
+    
+    <!-- Timeline Dot -->
+    <div class="absolute left-0 sm:left-1 top-2 w-6 h-6 rounded-full border-2 border-base-content/20 bg-base-100 flex items-center justify-center
+                {% if event.event_type == 'education' %}border-info bg-info/10
+                {% elif event.event_type == 'work' %}border-success bg-success/10
+                {% elif event.event_type == 'certification' %}border-warning bg-warning/10
+                {% else %}border-primary bg-primary/10{% endif %}">
+        {% if event.event_type == 'education' %}
+        <c-lbi.rmx.graduation-cap w="3" h="3" />
+        {% elif event.event_type == 'work' %}
+        <c-lbi.rmx.briefcase w="3" h="3" />
+        {% elif event.event_type == 'certification' %}
+        <c-lbi.rmx.verified w="3" h="3" />
+        {% else %}
+        <c-lbi.rmx.star w="3" h="3" />
+        {% endif %}
+    </div>
+    
+    <!-- Content -->
+    <div class="pb-8 {% if forloop.last %}pb-0{% endif %}">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
+            <h3 class="font-semibold text-lg group-hover:text-primary transition-colors">{{ event.title }}</h3>
+            {% if event.is_present %}
+            <span class="badge badge-primary badge-sm">Current</span>
+            {% endif %}
+        </div>
+        
+        {% if event.organization %}
+        <p class="text-base-content/60 font-medium">{{ event.organization }}</p>
+        {% endif %}
+        
+        <p class="text-base-content/40 text-sm mb-2">{{ event.get_date_range }}</p>
+        
+        {% if event.description %}
+        <p class="text-base-content/60 text-sm leading-relaxed">{{ event.description }}</p>
+        {% endif %}
+    </div>
+</div>

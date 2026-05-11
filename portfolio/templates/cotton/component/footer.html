@@ -1,0 +1,70 @@
+{% load lb_tags %}
+{% load static %}
+
+<!-- Footer Component -->
+<footer class="bg-base-200/50 border-t border-base-content/5 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+            <!-- Brand Column -->
+            <div class="md:col-span-2 space-y-4">
+                <a href="{% url 'portfolio:home' %}" class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <c-lbi.rmx.code w="1.5rem" h="1.5rem" class="text-primary" />
+                    </div>
+                    <span class="text-lg font-semibold tracking-tight">Gerlan B. Dorona</span>
+                </a>
+                <p class="text-base-content/60 text-sm max-w-sm leading-relaxed">
+                    Full-Stack Developer specializing in Django, Python, and modern web technologies. 
+                    Building scalable, user-friendly applications with attention to code quality and performance.
+                </p>
+                <!-- Social Links -->
+                <div class="flex gap-3 pt-2">
+                    <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-sm btn-circle btn-ghost">
+                        <c-lbi.rmx.brands.github w="1.25rem" h="1.25rem" />
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-sm btn-circle btn-ghost">
+                        <c-lbi.rmx.brands.linkedin w="1.25rem" h="1.25rem" />
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="btn btn-sm btn-circle btn-ghost">
+                        <c-lbi.rmx.brands.twitter w="1.25rem" h="1.25rem" />
+                    </a>
+                    <a href="mailto:hello@example.com" class="btn btn-sm btn-circle btn-ghost">
+                        <c-lbi.rmx.mail w="1.25rem" h="1.25rem" />
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="space-y-4">
+                <h3 class="font-semibold text-sm uppercase tracking-wider text-base-content/40">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-base-content/60 hover:text-base-content text-sm transition-colors">Home</a></li>
+                    <li><a href="#about" class="text-base-content/60 hover:text-base-content text-sm transition-colors">About</a></li>
+                    <li><a href="#projects" class="text-base-content/60 hover:text-base-content text-sm transition-colors">Projects</a></li>
+                    <li><a href="{% url 'portfolio:contact' %}" class="text-base-content/60 hover:text-base-content text-sm transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="space-y-4">
+                <h3 class="font-semibold text-sm uppercase tracking-wider text-base-content/40">Services</h3>
+                <ul class="space-y-2">
+                    <li><span class="text-base-content/60 text-sm">Web Development</span></li>
+                    <li><span class="text-base-content/60 text-sm">Admin Dashboards</span></li>
+                    <li><span class="text-base-content/60 text-sm">System Design</span></li>
+                    <li><span class="text-base-content/60 text-sm">AI Prototyping</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="mt-12 pt-8 border-t border-base-content/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-base-content/40 text-sm">
+                &copy; {% now "Y" %} Gerlan B. Dorona. Built with Django & labb.io.
+            </p>
+            <p class="text-base-content/40 text-sm">
+                Crafted with precision and care.
+            </p>
+        </div>
+    </div>
+</footer>

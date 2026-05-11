@@ -1,0 +1,258 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Gerlan B. Dorona | Technology Professional{% endblock %}
+
+{% block content %}
+<section id="home" class="section-wrap min-h-[calc(100vh-5rem)] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-[1.02fr_0.98fr] gap-10 lg:gap-14 items-center">
+            <div class="space-y-8">
+                <div class="space-y-5">
+                    <p class="eyebrow">Technology Professional</p>
+                    <h1 class="text-5xl md:text-7xl font-black leading-[0.98] text-balance">
+                        Gerlan B. Dorona builds practical apps and keeps the hardware behind them running.
+                    </h1>
+                    <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
+                        I help clients move from tech problems to working solutions: mobile apps, modern websites, AI-assisted workflows, and dependable computer or laptop repair handled with clear communication.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-primary shadow-lg shadow-primary/20">Discuss a Project</a>
+                    <a href="#services" class="btn btn-outline border-primary/40 text-base-content hover:border-primary">View Services</a>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-sm font-black text-primary uppercase">Mobile</p>
+                        <p class="text-xs uppercase tracking-wider text-base-content/55">Apps</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-sm font-black text-secondary uppercase">Web</p>
+                        <p class="text-xs uppercase tracking-wider text-base-content/55">Systems</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-sm font-black text-accent uppercase">AI</p>
+                        <p class="text-xs uppercase tracking-wider text-base-content/55">Assisted Dev</p>
+                    </div>
+                    <div class="data-chip rounded-lg p-4">
+                        <p class="text-sm font-black text-info uppercase">Repair</p>
+                        <p class="text-xs uppercase tracking-wider text-base-content/55">PC & Laptop</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-lg p-5 md:p-7 lift-card">
+                <div class="relative">
+                    <figure class="mx-auto max-w-md overflow-hidden rounded-full border border-base-content/10 bg-base-200/30">
+                        <img src="{% static 'portfolio/img/profile.jpg' %}" alt="Gerlan B. Dorona professional profile photo" class="aspect-square w-full rounded-full object-cover object-center">
+                    </figure>
+                    <div class="grid sm:grid-cols-3 gap-3 mt-5">
+                        <div class="data-chip rounded-lg p-4">
+                            <p class="text-xs text-base-content/45">Role</p>
+                            <p class="font-bold text-primary">Developer</p>
+                        </div>
+                        <div class="data-chip rounded-lg p-4">
+                            <p class="text-xs text-base-content/45">Support</p>
+                            <p class="font-bold text-secondary">Technician</p>
+                        </div>
+                        <div class="data-chip rounded-lg p-4">
+                            <p class="text-xs text-base-content/45">Approach</p>
+                            <p class="font-bold text-accent">Practical</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-lg p-6 md:p-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center">
+            <div>
+                <p class="eyebrow mb-4">About</p>
+                <h2 class="text-3xl md:text-5xl font-black leading-tight text-balance">A versatile builder for clients who need technology that simply works.</h2>
+            </div>
+            <div class="space-y-5 text-base-content/70 text-lg leading-relaxed">
+                <p>
+                    I work across the full technology layer: planning and building mobile or web applications, using AI-assisted development to move faster, and diagnosing the computers and laptops people rely on every day.
+                </p>
+                <p>
+                    My value is range with follow-through. I can turn an idea into a working interface, automate a manual workflow, troubleshoot a slow machine, upgrade hardware, or explain the best next step without hiding behind jargon.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <p class="eyebrow mb-3">Skills</p>
+            <h2 class="text-3xl md:text-5xl font-black">Core Capabilities</h2>
+        </div>
+
+        {% if skills %}
+        <div class="flex flex-wrap gap-3">
+            {% for skill in skills %}
+            <span class="data-chip rounded-lg px-4 py-3 text-sm font-semibold">
+                {{ skill.name }}
+                {% if skill.category %}<span class="ml-2 text-base-content/45">{{ skill.category.name }}</span>{% endif %}
+            </span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="data-chip rounded-lg p-5">
+                <h3 class="font-bold text-primary">Mobile Development</h3>
+                <p class="mt-2 text-sm text-base-content/60 leading-relaxed">App screens, client workflows, responsive interfaces, and practical build planning for phone-first experiences.</p>
+            </div>
+            <div class="data-chip rounded-lg p-5">
+                <h3 class="font-bold text-secondary">Web Development</h3>
+                <p class="mt-2 text-sm text-base-content/60 leading-relaxed">Django, Python, clean UI, admin tools, service pages, dashboards, and maintainable business websites.</p>
+            </div>
+            <div class="data-chip rounded-lg p-5">
+                <h3 class="font-bold text-accent">AI-Assisted Development</h3>
+                <p class="mt-2 text-sm text-base-content/60 leading-relaxed">Faster prototyping, workflow automation, smarter content, and AI-supported problem solving with human review.</p>
+            </div>
+            <div class="data-chip rounded-lg p-5">
+                <h3 class="font-bold text-info">Computer Repair</h3>
+                <p class="mt-2 text-sm text-base-content/60 leading-relaxed">Laptop diagnostics, upgrades, software cleanup, performance tuning, setup, maintenance, and honest repair guidance.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section id="projects" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+            <div>
+                <p class="eyebrow mb-3">Projects</p>
+                <h2 class="text-3xl md:text-5xl font-black">Selected Build Work</h2>
+            </div>
+            <a href="{% url 'portfolio:projects' %}" class="btn btn-outline border-primary/40">All Projects</a>
+        </div>
+
+        {% if projects %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for project in projects %}
+            <article class="glass-panel lift-card rounded-lg overflow-hidden">
+                {% if project.image %}
+                <figure class="aspect-video relative">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-base-100/75 via-transparent to-transparent"></div>
+                </figure>
+                {% endif %}
+                <div class="card-body relative">
+                    <div class="flex items-start justify-between gap-3">
+                        <h3 class="card-title text-xl">{{ project.title }}</h3>
+                        <span class="badge {{ project.get_status_display_class }}">{{ project.get_status_display }}</span>
+                    </div>
+                    <p class="text-base-content/60">{{ project.short_description }}</p>
+                    {% if project.tech_stack %}
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        {% for tech in project.tech_stack|slice:":4" %}
+                        <span class="badge badge-ghost">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="card-actions justify-end pt-3">
+                        {% if project.live_url %}<a href="{{ project.live_url }}" class="btn btn-sm btn-primary" target="_blank" rel="noopener">View</a>{% endif %}
+                        {% if project.repo_url %}<a href="{{ project.repo_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Code</a>{% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="glass-panel rounded-lg p-6 text-base-content/65">
+            Project examples can include mobile app concepts, Django websites, AI-assisted tools, repair case studies, and client support work.
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section id="experience" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <p class="eyebrow mb-3">Experience</p>
+            <h2 class="text-3xl md:text-5xl font-black">Professional Focus</h2>
+        </div>
+
+        {% if timeline_events %}
+        <div class="space-y-6 max-w-3xl">
+            {% for event in timeline_events %}
+            <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-primary/60">
+                <div class="flex flex-wrap items-center gap-3">
+                    <h3 class="font-semibold text-lg">{{ event.title }}</h3>
+                    {% if event.is_present %}<span class="badge badge-primary badge-sm">Current</span>{% endif %}
+                </div>
+                {% if event.organization %}<p class="text-base-content/70">{{ event.organization }}</p>{% endif %}
+                <p class="text-sm text-base-content/45">{{ event.get_date_range }}</p>
+                {% if event.description %}<p class="text-base-content/60 mt-2">{{ event.description }}</p>{% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="grid md:grid-cols-3 gap-5">
+            <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-primary/60">
+                <h3 class="font-semibold text-lg">Software that serves the business</h3>
+                <p class="text-base-content/60 mt-2">I focus on clear user flows, maintainable code, and practical features that reduce manual work.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-secondary/60">
+                <h3 class="font-semibold text-lg">AI used with judgment</h3>
+                <p class="text-base-content/60 mt-2">I use AI to accelerate development, organize ideas, and build smarter tools while keeping decisions human-led.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6 border-l-2 border-accent/60">
+                <h3 class="font-semibold text-lg">Hands-on technical support</h3>
+                <p class="text-base-content/60 mt-2">I understand the hardware side too, from troubleshooting and upgrades to keeping devices stable for everyday work.</p>
+            </article>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section id="services" class="section-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <p class="eyebrow mb-3">Services</p>
+            <h2 class="text-3xl md:text-5xl font-black">Ways I Can Help</h2>
+        </div>
+
+        {% if services %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for service in services %}
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <div class="card-body">
+                    <h3 class="card-title">{{ service.title }}</h3>
+                    <p class="text-base-content/60">{{ service.description }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Mobile App Development</h3>
+                <p class="text-base-content/60 mt-3">Plan, design, and build mobile-first experiences for service businesses, internal teams, and customer workflows.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Web Development</h3>
+                <p class="text-base-content/60 mt-3">Create professional websites, Django applications, admin panels, dashboards, and reliable online tools.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">AI-Assisted Development</h3>
+                <p class="text-base-content/60 mt-3">Use AI to prototype faster, automate repetitive work, improve content workflows, and make software projects more efficient.</p>
+            </article>
+            <article class="glass-panel lift-card rounded-lg p-6">
+                <h3 class="card-title">Computer & Laptop Repair</h3>
+                <p class="text-base-content/60 mt-3">Diagnose issues, clean up systems, install software, upgrade parts, recover performance, and keep devices work-ready.</p>
+            </article>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

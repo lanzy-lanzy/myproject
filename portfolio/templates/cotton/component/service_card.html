@@ -1,0 +1,17 @@
+{% load lb_tags %}
+
+<!-- Service Card Component -->
+<c-lb.card class="group h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <c-lb.card.body class="text-center p-6 md:p-8">
+        <!-- Icon -->
+        <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+            <c-lbi.{{ service.icon }} w="1.75rem" h="1.75rem" class="text-primary" />
+        </div>
+        
+        <!-- Title -->
+        <h3 class="font-semibold text-lg mb-3 group-hover:text-primary transition-colors">{{ service.title }}</h3>
+        
+        <!-- Description -->
+        <p class="text-base-content/60 text-sm leading-relaxed">{{ service.description }}</p>
+    </c-lb.card.body>
+</c-lb.card>
