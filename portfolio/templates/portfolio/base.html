@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gerlan B. Dorona provides mobile development, web development, AI-assisted development, and computer or laptop repair services.">
-    <title>{% block title %}Gerlan B. Dorona{% endblock %}</title>
+    <meta name="description" content="NeuralDev provides mobile development, web development, AI-assisted development, and computer or laptop repair services.">
+    <title>{% block title %}NeuralDev{% endblock %}</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{% static 'portfolio/img/favicon.svg' %}">
@@ -38,6 +38,18 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const themeInputs = document.querySelectorAll('input[name="theme-dropdown"].theme-controller');
+        const themeChoices = document.querySelectorAll('[data-theme-choice]');
+        const savedTheme = localStorage.getItem('portfolio-theme');
+
+        function applyTheme(value) {
+            if (value) {
+                document.documentElement.setAttribute('data-theme', value);
+                localStorage.setItem('portfolio-theme', value);
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.removeItem('portfolio-theme');
+            }
+        }
         
         function updateActiveState() {
             themeInputs.forEach(function(input) {
@@ -47,9 +59,30 @@
                     input.classList.remove('btn-active');
                 }
             });
+
+            const activeTheme = document.documentElement.getAttribute('data-theme') || '';
+            themeChoices.forEach(function(choice) {
+                if (choice.dataset.themeChoice === activeTheme) {
+                    choice.classList.add('active');
+                } else {
+                    choice.classList.remove('active');
+                }
+            });
+        }
+
+        if (savedTheme !== null) {
+            applyTheme(savedTheme);
         }
         
         updateActiveState();
+
+        themeChoices.forEach(function(choice) {
+            choice.addEventListener('click', function(event) {
+                event.preventDefault();
+                applyTheme(this.dataset.themeChoice || '');
+                updateActiveState();
+            });
+        });
         
         themeInputs.forEach(function(input) {
             input.addEventListener('change', function() {
