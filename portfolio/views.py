@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
+from django.db import DatabaseError
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
@@ -70,13 +71,15 @@ def contact_submit(request):
         messages.error(request, 'Please fix the errors in the form.')
         return redirect('portfolio:contact')
     
-    # Save the message
-    ContactMessage.objects.create(
-        name=name,
-        email=email,
-        subject=subject,
-        message=message
-    )
+    try:
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+    except DatabaseError:
+        pass
     
     if request.headers.get('HX-Request'):
         return render(request, 'portfolio/partials/contact_success.html')
