@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="100%" height="100%">
+  <defs>
+    <!-- Modern Tech Gradients -->
+    <linearGradient id="ai-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="50%" stop-color="#0077FF" />
+      <stop offset="100%" stop-color="#B400FF" />
+    </linearGradient>
+
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#B400FF" />
+    </linearGradient>
+
+    <!-- Glassmorphism Effects -->
+    <linearGradient id="glass-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0" />
+    </linearGradient>
+
+    <linearGradient id="glass-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(25, 20)">
+    <!-- Decorative Ambient Particles -->
+    <circle cx="0" cy="15" r="1.5" fill="#00E5FF" opacity="0.6"/>
+    <circle cx="110" cy="10" r="2" fill="#B400FF" opacity="0.8"/>
+    <circle cx="105" cy="100" r="1.5" fill="#0077FF" opacity="0.5"/>
+    <circle cx="-5" cy="85" r="1" fill="#FFFFFF" opacity="0.4"/>
+
+    <!-- Outer Glass Hexagon (Base Panel) -->
+    <polygon points="55,5 98.301,30 98.301,80 55,105 11.699,80 11.699,30" fill="url(#glass-fill)" stroke="url(#glass-stroke)" stroke-width="1.5" />
+    
+    <!-- Inner Neural Network (Hypercube structure) -->
+    <polygon points="55,30 76.651,42.5 76.651,67.5 55,80 33.349,67.5 33.349,42.5" fill="none" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    
+    <!-- Inner radiating connections -->
+    <line x1="55" y1="30" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="76.651" y1="42.5" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="76.651" y1="67.5" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="55" y1="80" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="33.349" y1="67.5" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="33.349" y1="42.5" x2="55" y2="55" stroke="url(#ai-gradient)" stroke-width="1.5" />
+
+    <!-- Outer radiating connections -->
+    <line x1="55" y1="5" x2="55" y2="30" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="98.301" y1="30" x2="76.651" y2="42.5" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="98.301" y1="80" x2="76.651" y2="67.5" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="55" y1="105" x2="55" y2="80" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="11.699" y1="80" x2="33.349" y2="67.5" stroke="url(#ai-gradient)" stroke-width="1.5" />
+    <line x1="11.699" y1="30" x2="33.349" y2="42.5" stroke="url(#ai-gradient)" stroke-width="1.5" />
+
+    <!-- Stylized 'N' Highlight Path -->
+    <path d="M 11.699 80 L 11.699 30 L 55 55 L 98.301 80 L 98.301 30" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Network Nodes (Data Points) -->
+    <!-- Center Core Node -->
+    <circle cx="55" cy="55" r="5" fill="#FFFFFF" />
+    
+    <!-- Inner Nodes -->
+    <circle cx="55" cy="30" r="3.5" fill="#00E5FF" />
+    <circle cx="76.651" cy="42.5" r="3.5" fill="#0077FF" />
+    <circle cx="76.651" cy="67.5" r="3.5" fill="#B400FF" />
+    <circle cx="55" cy="80" r="3.5" fill="#B400FF" />
+    <circle cx="33.349" cy="67.5" r="3.5" fill="#0077FF" />
+    <circle cx="33.349" cy="42.5" r="3.5" fill="#00E5FF" />
+    
+    <!-- Outer Nodes / Path Vertices -->
+    <circle cx="55" cy="5" r="3" fill="#00E5FF" />
+    <circle cx="98.301" cy="30" r="4.5" fill="#FFFFFF" />
+    <circle cx="98.301" cy="80" r="4.5" fill="#FFFFFF" />
+    <circle cx="55" cy="105" r="3" fill="#B400FF" />
+    <circle cx="11.699" cy="80" r="4.5" fill="#FFFFFF" />
+    <circle cx="11.699" cy="30" r="4.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- Logo Typography -->
+  <g transform="translate(150, 94)" style="user-select: none;">
+    <text font-family="'Outfit', 'Inter', 'Roboto', 'Segoe UI', sans-serif" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="-1">
+      Neural<tspan fill="url(#text-gradient)" font-weight="300">Dev</tspan>
+    </text>
+  </g>
+</svg>

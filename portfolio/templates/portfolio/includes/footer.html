@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- Footer -->
 <footer class="ai-footer relative z-[1] border-t border-base-content/10 mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -5,10 +7,7 @@
             <!-- Brand Column -->
             <div class="md:col-span-2 space-y-4">
                 <a href="{% url 'portfolio:home' %}" class="flex items-center gap-2">
-                    <div class="brand-mark w-10 h-10 rounded-2xl flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#07111d" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    </div>
-                    <span class="text-lg font-semibold tracking-tight">NeuralDev</span>
+                    <img src="{% static 'portfolio/img/neuraldev_logo.svg' %}" alt="Neural Dev" class="brand-logo brand-logo-footer">
                 </a>
                 <p class="text-base-content/60 text-sm max-w-sm leading-relaxed">
                     Mobile, web, AI-assisted development, and computer or laptop repair services delivered with practical judgment and clear communication.

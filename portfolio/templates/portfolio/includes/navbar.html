@@ -9,10 +9,7 @@
         <div class="flex items-center justify-between h-16 md:h-20">
             <!-- Logo -->
             <a href="{% url 'portfolio:home' %}" class="flex items-center gap-2 group">
-                <div class="brand-mark w-11 h-11 rounded-2xl flex items-center justify-center transition-transform group-hover:-translate-y-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#07111d" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                </div>
-                <span class="text-lg font-semibold tracking-tight">NeuralDev</span>
+                <img src="{% static 'portfolio/img/neuraldev_logo.svg' %}" alt="Neural Dev" class="brand-logo brand-logo-nav transition-transform group-hover:-translate-y-0.5">
             </a>
             
             <!-- Desktop Navigation -->

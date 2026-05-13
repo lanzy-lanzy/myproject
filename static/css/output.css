@@ -3079,12 +3079,6 @@
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
-  .h-10 {
-    height: calc(var(--spacing) * 10);
-  }
-  .h-11 {
-    height: calc(var(--spacing) * 11);
-  }
   .h-14 {
     height: calc(var(--spacing) * 14);
   }
@@ -3111,12 +3105,6 @@
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
-  }
-  .w-11 {
-    width: calc(var(--spacing) * 11);
   }
   .w-14 {
     width: calc(var(--spacing) * 14);
@@ -4469,6 +4457,19 @@
   .brand-mark {
     background: linear-gradient(145deg, rgba(125, 249, 255, 0.9), rgba(178, 125, 255, 0.8)), radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.85), transparent 30%);
     box-shadow: 0 12px 40px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  .brand-logo {
+    display: block;
+    inline-size: auto;
+    object-fit: contain;
+  }
+  .brand-logo-nav {
+    block-size: clamp(2.4rem, 6vw, 3.25rem);
+    max-inline-size: min(12rem, 46vw);
+  }
+  .brand-logo-footer {
+    block-size: 3rem;
+    max-inline-size: min(12rem, 70vw);
   }
   .section-wrap {
     position: relative;

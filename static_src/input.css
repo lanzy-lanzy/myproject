@@ -325,6 +325,22 @@
     box-shadow: 0 12px 40px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
+  .brand-logo {
+    display: block;
+    inline-size: auto;
+    object-fit: contain;
+  }
+
+  .brand-logo-nav {
+    block-size: clamp(2.4rem, 6vw, 3.25rem);
+    max-inline-size: min(12rem, 46vw);
+  }
+
+  .brand-logo-footer {
+    block-size: 3rem;
+    max-inline-size: min(12rem, 70vw);
+  }
+
   .section-wrap {
     position: relative;
     padding-block: clamp(4rem, 8vw, 7rem);
