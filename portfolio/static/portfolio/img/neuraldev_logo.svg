@@ -178,7 +178,7 @@
 
   <!-- Logo Typography -->
   <g class="logo-wordmark" transform="translate(150, 94)" style="user-select: none;">
-    <text font-family="'Outfit', 'Inter', 'Roboto', 'Segoe UI', sans-serif" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="-1">
+    <text font-family="'Outfit', 'Inter', 'Roboto', 'Segoe UI', sans-serif" font-size="54" font-weight="800" fill="#FFFFFF" stroke="#0B1220" stroke-width="3.2" stroke-linejoin="round" paint-order="stroke fill" letter-spacing="-1">
       Nightly<tspan fill="url(#text-gradient)" font-weight="300">Dev</tspan>
     </text>
   </g>

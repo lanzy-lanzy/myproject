@@ -1,0 +1,15 @@
+file 'C:/Users/gerla/mywork/myproject/media/social/neuraldev-facebook-portfolio-cover.png'
+duration 2
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_01.png'
+duration 3
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_02.png'
+duration 3
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_03.png'
+duration 3
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_04.png'
+duration 4
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_05.png'
+duration 3
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_06.png'
+duration 4
+file 'C:/Users/gerla/mywork/myproject/media/social/facebook_promo_frames/slide_06.png'

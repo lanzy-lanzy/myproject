@@ -285,13 +285,15 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const ctx = canvas.getContext('2d', { alpha: true });
     const config = {
-        fadeDuration: 1450,
-        maxParticles: 280,
+        fadeDuration: 1500,
+        maxParticles: 190,
         baseSpawnRate: 0.018,
         speedSpawnBoost: 0.036,
-        connectionDistance: 126,
-        pointerEase: 0.18,
-        idlePulseRate: 0.42
+        connectionDistance: 78,
+        pointerEase: 0.72,
+        idlePulseRate: 0.42,
+        ambientDensity: 0.000032,
+        maxConnectionChecks: 720
     };
 
     let width = 0;
@@ -351,6 +353,7 @@
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seedAmbientParticles();
     }
 
     function randomBetween(min, max) {
@@ -376,8 +379,37 @@
             pulse: randomBetween(0, Math.PI * 2),
             spin: randomBetween(-0.028, 0.028),
             drift: randomBetween(-0.006, 0.006),
-            dataBit: Math.random() > 0.72
+            trailLength: randomBetween(7, 18) + movementIntensity * randomBetween(12, 34),
+            ambient: false,
+            dataBit: Math.random() > 0.86
         };
+    }
+
+    function makeAmbientParticle() {
+        const particle = makeParticle(randomBetween(0, width), randomBetween(0, height), randomBetween(40, 180));
+        particle.ambient = true;
+        particle.age = randomBetween(0, particle.life * 0.72);
+        particle.life = randomBetween(7000, 14000);
+        particle.size *= 0.68;
+        particle.trailLength = randomBetween(5, 13);
+        particle.vx *= 0.38;
+        particle.vy *= 0.38;
+        return particle;
+    }
+
+    function seedAmbientParticles() {
+        if (!palette) return;
+
+        const ambientTarget = Math.min(70, Math.max(32, Math.floor(width * height * config.ambientDensity)));
+        particles.length = Math.min(particles.length, config.maxParticles - ambientTarget);
+        let ambientCount = particles.reduce(function(count, particle) {
+            return count + (particle.ambient ? 1 : 0);
+        }, 0);
+
+        while (ambientCount < ambientTarget) {
+            particles.unshift(makeAmbientParticle());
+            ambientCount += 1;
+        }
     }
 
     function addParticles(count, x, y, speed, directionalAngle) {
@@ -393,32 +425,56 @@
         }
     }
 
+    function addTrailParticles(count, fromX, fromY, toX, toY, speed, directionalAngle) {
+        for (let i = 0; i < count; i += 1) {
+            const progress = count === 1 ? 1 : i / (count - 1);
+            const jitter = randomBetween(-8, 8);
+            addParticles(
+                1,
+                fromX + (toX - fromX) * progress + jitter,
+                fromY + (toY - fromY) * progress + jitter,
+                speed,
+                directionalAngle
+            );
+        }
+    }
+
     function updatePointer() {
-        pointer.previousX = pointer.x;
-        pointer.previousY = pointer.y;
-        pointer.x += (pointer.targetX - pointer.x) * config.pointerEase;
-        pointer.y += (pointer.targetY - pointer.y) * config.pointerEase;
         pointer.smoothSpeed += (pointer.speed - pointer.smoothSpeed) * 0.16;
         pointer.speed *= 0.9;
     }
 
     function drawParticle(particle, alpha) {
         const radius = particle.size * (0.8 + Math.sin(particle.pulse) * 0.16);
+        const velocityAngle = Math.atan2(particle.vy, particle.vx);
+        const tailX = Math.cos(velocityAngle) * particle.trailLength;
+        const tailY = Math.sin(velocityAngle) * particle.trailLength;
+
         ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.fillStyle = particle.color;
+        ctx.globalCompositeOperation = 'lighter';
         ctx.shadowColor = particle.color;
-        ctx.shadowBlur = 18 + particle.size * 4;
+        ctx.shadowBlur = particle.ambient ? 5 : 16 + particle.size * 3;
+        ctx.lineCap = 'round';
+        ctx.globalAlpha = alpha * (particle.ambient ? 0.32 : 0.78);
+        ctx.strokeStyle = particle.color;
+        ctx.lineWidth = Math.max(1, radius * 1.15);
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
+        ctx.moveTo(particle.x - tailX, particle.y - tailY);
+        ctx.lineTo(particle.x + tailX * 0.18, particle.y + tailY * 0.18);
+        ctx.stroke();
+
+        ctx.globalAlpha = alpha * (particle.ambient ? 0.42 : 0.9);
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, Math.max(0.7, radius * 0.58), 0, Math.PI * 2);
         ctx.fill();
 
         if (particle.dataBit) {
-            ctx.globalAlpha = alpha * 0.48;
+            ctx.globalAlpha = alpha * 0.34;
             ctx.shadowBlur = 9;
             ctx.strokeStyle = particle.color;
             ctx.lineWidth = 1;
-            ctx.strokeRect(particle.x - radius * 1.8, particle.y - radius * 1.8, radius * 3.6, radius * 3.6);
+            ctx.strokeRect(particle.x - radius * 1.4, particle.y - radius * 1.4, radius * 2.8, radius * 2.8);
         }
         ctx.restore();
     }
@@ -426,36 +482,44 @@
     function drawConnections() {
         ctx.save();
         ctx.globalCompositeOperation = 'lighter';
+        let checks = 0;
         for (let i = 0; i < particles.length; i += 1) {
             const a = particles[i];
             const alphaA = 1 - a.age / a.life;
             if (alphaA <= 0) continue;
 
-            for (let j = i + 1; j < particles.length; j += 1) {
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const distance = Math.hypot(dx, dy);
-                const limit = Math.min(a.linkRange, b.linkRange);
-                if (distance > limit) continue;
+            if (!a.ambient) {
+                for (let j = i + 1; j < particles.length; j += 1) {
+                    checks += 1;
+                    if (checks > config.maxConnectionChecks) break;
 
-                const alphaB = 1 - b.age / b.life;
-                const connectionAlpha = (1 - distance / limit) * Math.min(alphaA, alphaB) * 0.38;
-                ctx.globalAlpha = connectionAlpha;
-                ctx.strokeStyle = a.color;
-                ctx.lineWidth = 0.65;
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                ctx.stroke();
+                    const b = particles[j];
+                    if (b.ambient) continue;
+
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const distance = Math.hypot(dx, dy);
+                    const limit = Math.min(a.linkRange, b.linkRange);
+                    if (distance > limit) continue;
+
+                    const alphaB = 1 - b.age / b.life;
+                    const connectionAlpha = (1 - distance / limit) * Math.min(alphaA, alphaB) * 0.18;
+                    ctx.globalAlpha = connectionAlpha;
+                    ctx.strokeStyle = a.color;
+                    ctx.lineWidth = 0.55;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                }
             }
 
-            const cursorDistance = Math.hypot(a.x - pointer.x, a.y - pointer.y);
-            const cursorRange = 138 + Math.min(pointer.smoothSpeed / 10, 96);
+            const cursorDistance = a.ambient ? Infinity : Math.hypot(a.x - pointer.x, a.y - pointer.y);
+            const cursorRange = 118 + Math.min(pointer.smoothSpeed / 12, 82);
             if (cursorDistance < cursorRange) {
-                ctx.globalAlpha = (1 - cursorDistance / cursorRange) * alphaA * 0.42;
+                ctx.globalAlpha = (1 - cursorDistance / cursorRange) * alphaA * 0.22;
                 ctx.strokeStyle = a.color;
-                ctx.lineWidth = 0.9;
+                ctx.lineWidth = 0.65;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
                 ctx.lineTo(pointer.x, pointer.y);
@@ -511,10 +575,10 @@
 
         spawnCarry += delta * (config.baseSpawnRate + speedFactor * config.speedSpawnBoost);
         if (movement > 0.28) {
-            spawnCarry += Math.min(movement / 30, 2.8);
+            spawnCarry += Math.min(movement / 36, 2.2);
         }
 
-        const burstCount = Math.min(Math.floor(spawnCarry), 18);
+        const burstCount = Math.min(Math.floor(spawnCarry), 10);
         if (burstCount > 0) {
             addParticles(burstCount, pointer.x, pointer.y, pointer.smoothSpeed, directionalAngle);
             spawnCarry -= burstCount;
@@ -532,12 +596,18 @@
             const particle = particles[i];
             particle.age += delta;
             if (particle.age >= particle.life) {
+                if (particle.ambient) {
+                    particles[i] = makeAmbientParticle();
+                    continue;
+                }
                 particles.splice(i, 1);
                 continue;
             }
 
             const alpha = 1 - particle.age / particle.life;
-            const magnet = pointer.active ? 0.00048 + speedFactor * 0.00058 : 0.00018;
+            const magnet = particle.ambient
+                ? (pointer.active ? 0.00028 : 0.00004)
+                : (pointer.active ? 0.00048 + speedFactor * 0.00058 : 0.00018);
             const pullX = (pointer.x - particle.x) * magnet * delta;
             const pullY = (pointer.y - particle.y) * magnet * delta;
             particle.vx += pullX + Math.sin(particle.age * particle.drift + particle.pulse) * 0.006;
@@ -553,6 +623,8 @@
 
         drawConnections();
         if (pointer.active) drawCursorCore();
+        pointer.previousX = pointer.x;
+        pointer.previousY = pointer.y;
 
         animationId = window.requestAnimationFrame(animate);
     }
@@ -561,9 +633,15 @@
         const now = performance.now();
         const x = event.clientX;
         const y = event.clientY;
-        const distance = Math.hypot(x - pointer.targetX, y - pointer.targetY);
+        const lastX = pointer.x;
+        const lastY = pointer.y;
+        const distance = Math.hypot(x - lastX, y - lastY);
         const elapsed = Math.max(now - pointer.lastEventTime, 16);
 
+        pointer.previousX = lastX;
+        pointer.previousY = lastY;
+        pointer.x = x;
+        pointer.y = y;
         pointer.targetX = x;
         pointer.targetY = y;
         pointer.speed = Math.min((distance / elapsed) * 1000, 2600);
@@ -571,7 +649,15 @@
         pointer.active = true;
 
         if (distance > 24) {
-            addParticles(Math.min(10, Math.ceil(distance / 42)), x, y, pointer.speed, Math.atan2(y - pointer.y, x - pointer.x));
+            addTrailParticles(
+                Math.min(10, Math.ceil(distance / 34)),
+                lastX,
+                lastY,
+                x,
+                y,
+                pointer.speed,
+                Math.atan2(y - lastY, x - lastX)
+            );
         }
     }
 
