@@ -181,9 +181,8 @@
         color-mix(in oklch, var(--color-base-100) 92%, var(--color-base-content) 8%) 48%,
         color-mix(in oklch, var(--color-base-100) 94%, var(--color-secondary) 6%) 100%);
     background-size: 150% 150%, 160% 160%, 170% 170%, 100% 100%;
-    background-attachment: fixed;
+    background-attachment: scroll;
     color: var(--color-base-content);
-    animation: ambient-gradient 24s ease-in-out infinite alternate;
   }
 
   body::before {
@@ -197,7 +196,7 @@
       linear-gradient(90deg, color-mix(in oklch, var(--color-primary) 10%, transparent) 1px, transparent 1px);
     background-size: 42px 42px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 76%);
-    animation: grid-drift 22s linear infinite;
+    opacity: 0.72;
   }
 
   body::after {
@@ -229,8 +228,9 @@
   }
 
   .ambient-field {
-    position: fixed;
-    inset: 0;
+    position: absolute;
+    inset: 0 0 auto;
+    min-height: min(100vh, 54rem);
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
@@ -242,7 +242,6 @@
     display: block;
     border: 1px solid color-mix(in oklch, var(--color-base-content) 14%, transparent);
     opacity: 0.7;
-    will-change: transform, opacity;
   }
 
   .ambient-orbit {
@@ -258,7 +257,6 @@
     height: 18rem;
     top: 8%;
     left: -7rem;
-    animation: float-orbit-a 18s ease-in-out infinite;
   }
 
   .ambient-orbit-b {
@@ -268,7 +266,6 @@
     right: -10rem;
     border-color: color-mix(in oklch, var(--color-secondary) 20%, transparent);
     box-shadow: 0 0 70px color-mix(in oklch, var(--color-secondary) 14%, transparent);
-    animation: float-orbit-b 24s ease-in-out infinite;
   }
 
   .ambient-orbit-c {
@@ -278,7 +275,6 @@
     left: 18%;
     border-color: color-mix(in oklch, var(--color-accent) 18%, transparent);
     box-shadow: 0 0 58px color-mix(in oklch, var(--color-accent) 12%, transparent);
-    animation: float-orbit-c 20s ease-in-out infinite;
   }
 
   .ambient-shard {
@@ -287,13 +283,11 @@
     border-radius: 0.75rem;
     background: linear-gradient(135deg, color-mix(in oklch, var(--color-primary) 10%, transparent), color-mix(in oklch, var(--color-secondary) 8%, transparent));
     transform: rotate(45deg);
-    backdrop-filter: blur(8px);
   }
 
   .ambient-shard-a {
     top: 17%;
     right: 18%;
-    animation: shard-drift-a 21s ease-in-out infinite;
   }
 
   .ambient-shard-b {
@@ -301,7 +295,6 @@
     right: 8%;
     width: 5rem;
     height: 5rem;
-    animation: shard-drift-b 17s ease-in-out infinite;
   }
 
   .ambient-shard-c {
@@ -309,13 +302,14 @@
     left: 7%;
     width: 6rem;
     height: 6rem;
-    animation: shard-drift-c 19s ease-in-out infinite;
   }
 
   .nav-glass {
     background: color-mix(in oklch, var(--color-base-100) 84%, transparent);
     border-bottom: 1px solid color-mix(in oklch, var(--color-base-content) 14%, transparent);
-    box-shadow: 0 20px 60px color-mix(in oklch, var(--color-base-content) 12%, transparent);
+    box-shadow: 0 12px 36px color-mix(in oklch, var(--color-base-content) 9%, transparent);
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 
   .brand-mark {
@@ -410,7 +404,7 @@
     inline-size: 0.08em;
     background: var(--type-caret, var(--color-primary));
     animation:
-      typewriter-caret var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both,
+      typewriter-caret var(--type-duration) steps(var(--chars)) var(--type-delay) 1 both,
       caret-blink 720ms steps(1) infinite;
   }
 
@@ -424,9 +418,8 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 0 18px color-mix(in oklch, var(--color-primary) 22%, transparent));
     animation:
-      typewriter-reveal var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both;
+      typewriter-reveal var(--type-duration) steps(var(--chars)) var(--type-delay) 1 both;
   }
 
   .typewriter-nightly {
@@ -445,7 +438,6 @@
 
   .typewriter-build .typewriter-text {
     background-image: linear-gradient(95deg, var(--color-accent), var(--color-primary), var(--color-secondary));
-    filter: drop-shadow(0 0 18px color-mix(in oklch, var(--color-accent) 20%, transparent));
   }
 
   .hero-headline-rest {
@@ -463,9 +455,8 @@
       color-mix(in oklch, var(--color-base-200) 76%, transparent)
     );
     box-shadow:
-      0 28px 90px color-mix(in oklch, var(--color-base-content) 14%, transparent),
+      0 18px 52px color-mix(in oklch, var(--color-base-content) 11%, transparent),
       inset 0 1px 0 color-mix(in oklch, var(--color-base-content) 7%, transparent);
-    backdrop-filter: blur(22px);
   }
 
   .glass-panel::before {
@@ -695,7 +686,6 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     box-shadow: 0 14px 34px color-mix(in oklch, var(--color-base-content) 22%, transparent);
-    backdrop-filter: blur(16px);
   }
 
   .profile-status-dot {
@@ -855,36 +845,22 @@
 }
 
 @keyframes typewriter-reveal {
-  0%,
-  8% {
+  0% {
     clip-path: inset(0 100% 0 0);
   }
 
-  38%,
-  66% {
-    clip-path: inset(0 0 0 0);
-  }
-
-  92%,
   100% {
-    clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 0 0 0);
   }
 }
 
 @keyframes typewriter-caret {
-  0%,
-  8% {
+  0% {
     transform: translateX(0);
   }
 
-  38%,
-  66% {
-    transform: translateX(calc(var(--chars) * 1ch));
-  }
-
-  92%,
   100% {
-    transform: translateX(0);
+    transform: translateX(calc(var(--chars) * 1ch));
   }
 }
 
@@ -999,13 +975,11 @@
   0% {
     opacity: 0;
     transform: translateY(1.4rem);
-    filter: blur(8px);
   }
 
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -1013,13 +987,11 @@
   0% {
     opacity: 0;
     transform: translateX(-1.5rem);
-    filter: blur(8px);
   }
 
   100% {
     opacity: 1;
     transform: translateX(0);
-    filter: blur(0);
   }
 }
 
@@ -1027,25 +999,21 @@
   0% {
     opacity: 0;
     transform: translateX(1.5rem);
-    filter: blur(8px);
   }
 
   100% {
     opacity: 1;
     transform: translateX(0);
-    filter: blur(0);
   }
 }
 
 @keyframes reveal-soft {
   0% {
     opacity: 0;
-    filter: blur(10px);
   }
 
   100% {
     opacity: 1;
-    filter: blur(0);
   }
 }
 
