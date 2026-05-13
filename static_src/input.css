@@ -236,6 +236,18 @@
     pointer-events: none;
   }
 
+  .neural-particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0.82;
+    mix-blend-mode: normal;
+    transform: translateZ(0);
+  }
+
   .ambient-orbit,
   .ambient-shard {
     position: absolute;

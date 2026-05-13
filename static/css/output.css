@@ -3167,6 +3167,9 @@
       }
     }
   }
+  .resize {
+    resize: both;
+  }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -4348,6 +4351,17 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
+  }
+  .neural-particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0.82;
+    mix-blend-mode: normal;
+    transform: translateZ(0);
   }
   .ambient-orbit, .ambient-shard {
     position: absolute;
