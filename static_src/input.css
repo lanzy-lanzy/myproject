@@ -373,24 +373,44 @@
     --chars: 8;
     --type-duration: 5.8s;
     --type-delay: 250ms;
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
+    display: inline-grid;
+    inline-size: calc((var(--chars) * 1ch) + 0.12em);
+    max-inline-size: 100%;
+    position: relative;
     vertical-align: bottom;
-    white-space: nowrap;
-    border-right: 0.08em solid var(--type-caret, var(--color-primary));
     font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     letter-spacing: 0;
     line-height: 0.98;
     text-transform: lowercase;
+    contain: layout paint;
+    isolation: isolate;
+  }
+
+  .typewriter-word::after {
+    content: "";
+    position: absolute;
+    inset-block: 0.08em;
+    inset-inline-start: 0;
+    inline-size: 0.08em;
+    background: var(--type-caret, var(--color-primary));
+    animation:
+      typewriter-caret var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both,
+      caret-blink 720ms steps(1) infinite;
+  }
+
+  .typewriter-text {
+    display: block;
+    inline-size: calc(var(--chars) * 1ch);
+    max-inline-size: 100%;
+    overflow: hidden;
+    white-space: nowrap;
     background: linear-gradient(95deg, var(--color-primary), var(--color-base-content) 44%, var(--color-secondary) 78%, var(--color-accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     filter: drop-shadow(0 0 18px color-mix(in oklch, var(--color-primary) 22%, transparent));
     animation:
-      typewriter-loop var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both,
-      caret-blink 720ms steps(1) infinite;
+      typewriter-reveal var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both;
   }
 
   .typewriter-neural {
@@ -405,6 +425,9 @@
     --type-delay: 1s;
     --type-caret: var(--color-accent);
     margin-inline: 0.08em;
+  }
+
+  .typewriter-build .typewriter-text {
     background-image: linear-gradient(95deg, var(--color-accent), var(--color-primary), var(--color-secondary));
     filter: drop-shadow(0 0 18px color-mix(in oklch, var(--color-accent) 20%, transparent));
   }
@@ -815,29 +838,48 @@
   }
 }
 
-@keyframes typewriter-loop {
+@keyframes typewriter-reveal {
   0%,
   8% {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
   }
 
   38%,
   66% {
-    width: calc(var(--chars) * 1ch);
+    clip-path: inset(0 0 0 0);
   }
 
   92%,
   100% {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes typewriter-caret {
+  0%,
+  8% {
+    transform: translateX(0);
+  }
+
+  38%,
+  66% {
+    transform: translateX(calc(var(--chars) * 1ch));
+  }
+
+  92%,
+  100% {
+    transform: translateX(0);
   }
 }
 
 @keyframes caret-blink {
   0%, 48% {
+    background-color: var(--type-caret, var(--color-primary));
     border-color: var(--type-caret, var(--color-primary));
   }
 
   49%, 100% {
+    background-color: transparent;
     border-color: transparent;
   }
 }
@@ -1029,7 +1071,15 @@
   }
 
   .typewriter-word {
-    width: auto;
-    border-right-color: transparent;
+    inline-size: auto;
+  }
+
+  .typewriter-word::after {
+    display: none;
+  }
+
+  .typewriter-text {
+    animation: none;
+    clip-path: none;
   }
 }
