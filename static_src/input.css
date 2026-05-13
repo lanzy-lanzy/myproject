@@ -333,12 +333,12 @@
 
   .brand-logo-nav {
     block-size: clamp(3rem, 7vw, 4rem);
-    max-inline-size: min(14rem, 56vw);
+    max-inline-size: min(16rem, 62vw);
   }
 
   .brand-logo-footer {
     block-size: 3.75rem;
-    max-inline-size: min(14rem, 76vw);
+    max-inline-size: min(16rem, 76vw);
   }
 
   .section-wrap {
@@ -429,8 +429,8 @@
       typewriter-reveal var(--type-duration) steps(var(--chars)) var(--type-delay) infinite both;
   }
 
-  .typewriter-neural {
-    --chars: 9;
+  .typewriter-nightly {
+    --chars: 10;
     --type-duration: 6.2s;
     --type-delay: 420ms;
   }
