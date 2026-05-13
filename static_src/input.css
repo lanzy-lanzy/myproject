@@ -332,13 +332,13 @@
   }
 
   .brand-logo-nav {
-    block-size: clamp(2.4rem, 6vw, 3.25rem);
-    max-inline-size: min(12rem, 46vw);
+    block-size: clamp(3rem, 7vw, 4rem);
+    max-inline-size: min(14rem, 56vw);
   }
 
   .brand-logo-footer {
-    block-size: 3rem;
-    max-inline-size: min(12rem, 70vw);
+    block-size: 3.75rem;
+    max-inline-size: min(14rem, 76vw);
   }
 
   .section-wrap {
